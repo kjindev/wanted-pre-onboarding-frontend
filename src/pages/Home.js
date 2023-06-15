@@ -8,14 +8,14 @@ export default function Home() {
       <div className="h-[35%] text-center">
         <div className="text-sm p-5">아직 회원이 아니신가요?</div>
         <Link
-          to="/SignUp"
+          to="/signup"
           className="px-12 py-3 bg-sky-100 hover:bg-sky-200 hover:cursor-pointer"
         >
           회원가입
         </Link>
         <div className="text-sm p-5">이미 계정이 있으신가요?</div>
         <Link
-          to="/SignIn"
+          to="/signin"
           className="px-12 py-3 bg-sky-100 hover:bg-sky-200 hover:cursor-pointer"
         >
           로그인

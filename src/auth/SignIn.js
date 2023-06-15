@@ -16,10 +16,6 @@ export default function SignIn() {
     }
   };
 
-  useEffect(() => {
-    checkInput();
-  }, [currentEmail, currentPassword]);
-
   const requestSignIn = async (event) => {
     event.preventDefault();
     try {
@@ -41,6 +37,10 @@ export default function SignIn() {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    checkInput();
+  }, [currentEmail, currentPassword]);
 
   return (
     <div className="bg-sky-100 w-[100%]">

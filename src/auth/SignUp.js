@@ -32,7 +32,7 @@ export default function SignUp() {
         },
       });
       if (status === 201) {
-        navigator("/SignIn");
+        navigator("/signin");
       }
     } catch (err) {
       console.log(err);
