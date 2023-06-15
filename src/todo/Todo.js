@@ -1,19 +1,22 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import TodoItem from "./TodoItem";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 
-export default function Todo() {
+const TodoItem = lazy(() => import("./TodoItem"));
+
+function Todo() {
   const [list, setList] = useState();
   const [check, setCheck] = useState(false);
   const [currentTodo, setCurrentTodo] = useState("");
+  const reqUrl = "https://www.pre-onboarding-selection-task.shop/todos";
+  const token = localStorage.token;
 
   const getTodos = async () => {
     try {
       const { data } = await axios({
-        url: "https://www.pre-onboarding-selection-task.shop/todos",
+        url: reqUrl,
         method: "get",
         headers: {
-          Authorization: `Bearer ${localStorage.token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       setList(data);
@@ -27,10 +30,10 @@ export default function Todo() {
     setCurrentTodo("");
     try {
       await axios({
-        url: "https://www.pre-onboarding-selection-task.shop/todos",
+        url: reqUrl,
         method: "post",
         headers: {
-          Authorization: `Bearer ${localStorage.token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         data: {
@@ -46,10 +49,10 @@ export default function Todo() {
   const updateTodos = async (id, todo, completed) => {
     try {
       await axios({
-        url: `https://www.pre-onboarding-selection-task.shop/todos/${id}`,
+        url: `${reqUrl}/${id}`,
         method: "put",
         headers: {
-          Authorization: `Bearer ${localStorage.token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         data: {
@@ -66,10 +69,10 @@ export default function Todo() {
   const deleteTodos = async (id) => {
     try {
       await axios({
-        url: `https://www.pre-onboarding-selection-task.shop/todos/${id}`,
+        url: `${reqUrl}/${id}`,
         method: "delete",
         headers: {
-          Authorization: `Bearer ${localStorage.token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       setCheck(!check);
@@ -84,7 +87,7 @@ export default function Todo() {
 
   return (
     <div className="w-[100%] pt-10 flex flex-col justify-center items-center">
-      <div className="text-3xl p-3">Todo List</div>
+      <div className="text-3xl p-3">TODO List</div>
       <form className="p-5">
         <input
           placeholder="내용을 입력하세요"
@@ -99,13 +102,17 @@ export default function Todo() {
       {list &&
         list.map((item) => (
           <div className="p-3" key={item.id}>
-            <TodoItem
-              item={item}
-              updateTodos={updateTodos}
-              deleteTodos={deleteTodos}
-            />
+            <Suspense fallback={<div></div>}>
+              <TodoItem
+                item={item}
+                updateTodos={updateTodos}
+                deleteTodos={deleteTodos}
+              />
+            </Suspense>
           </div>
         ))}
     </div>
   );
 }
+
+export default React.memo(Todo);

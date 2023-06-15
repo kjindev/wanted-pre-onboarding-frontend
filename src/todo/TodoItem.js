@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-export default function TodoItem({ item, updateTodos, deleteTodos }) {
+function TodoItem({ item, updateTodos, deleteTodos }) {
   const [isEditing, setIsEditing] = useState(false);
   const editRef = useRef();
   const checkRef = useRef();
@@ -72,3 +72,5 @@ export default function TodoItem({ item, updateTodos, deleteTodos }) {
     );
   }
 }
+
+export default React.memo(TodoItem);
