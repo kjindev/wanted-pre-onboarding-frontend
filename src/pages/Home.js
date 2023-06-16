@@ -9,13 +9,13 @@ export default function Home() {
       <div className="w-[80vw] md:w-[30vw] h-[35%] text-center">
         <div className="text-sm p-2">아직 회원이 아니신가요?</div>
         <Link to="/signup">
-          <div className="py-3 mb-5 bg-sky-100 hover:bg-sky-200 hover:cursor-pointer">
+          <div className="py-3 mb-5 bg-sky-200 hover:bg-sky-300 hover:cursor-pointer">
             회원가입
           </div>
         </Link>
         <div className="text-sm p-2">이미 계정이 있으신가요?</div>
         <Link to="/signin">
-          <div className="py-3 bg-sky-100 hover:bg-sky-200 hover:cursor-pointer">
+          <div className="py-3 bg-sky-200 hover:bg-sky-300 hover:cursor-pointer">
             로그인
           </div>
         </Link>

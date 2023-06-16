@@ -25,10 +25,10 @@ export default function SignUp() {
     <div></div>;
   } else {
     return (
-      <div className="bg-sky-100 w-[100%]">
+      <div className="bg-black w-[100%]">
         <div className="p-5 fixed"></div>
         <div className="h-[100vh] flex flex-col justify-center items-center pb-12">
-          <div className="h-[10%] text-xl">회원가입</div>
+          <div className="h-[10%] text-xl text-white">회원가입</div>
           <div className="flex flex-col justify-center items-center bg-white p-9 rounded-2xl w-[320px]">
             <form className="flex flex-col items-center text-sm w-[100%]">
               <input

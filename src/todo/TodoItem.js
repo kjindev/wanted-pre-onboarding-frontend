@@ -21,6 +21,7 @@ function TodoItem({ item, updateTodos, deleteTodos }) {
           <input
             ref={editRef}
             placeholder={item.todo}
+            className="pl-2 w-[40vw] md:w-[30vw]"
             data-testid="modify-input"
           />
         </label>
@@ -51,8 +52,11 @@ function TodoItem({ item, updateTodos, deleteTodos }) {
             type="checkbox"
             ref={checkRef}
             onClick={() => updateTodos(item.id, item.todo, !item.isCompleted)}
+            className="relative top-[1px]"
           />
-          <span className="w-[300px]">{item.todo}</span>
+          <span className="pl-2 inline-block w-[40vw] md:w-[30vw]">
+            {item.todo}
+          </span>
         </label>
         <button
           onClick={() => setIsEditing(true)}
@@ -63,7 +67,7 @@ function TodoItem({ item, updateTodos, deleteTodos }) {
         </button>
         <button
           onClick={() => deleteTodos(item.id)}
-          className="p-2"
+          className="p-2 self-end"
           data-testid="delete-button"
         >
           삭제

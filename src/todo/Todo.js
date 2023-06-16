@@ -85,34 +85,45 @@ function Todo() {
     getTodos();
   }, [check]);
 
-  return (
-    <div className="w-[100%] pt-10 flex flex-col justify-center items-center">
-      <div className="text-3xl p-3">TODO List</div>
-      <form className="p-5">
-        <input
-          placeholder="내용을 입력하세요"
-          value={currentTodo || ""}
-          onChange={(event) => setCurrentTodo(event.target.value)}
-          data-testid="new-todo-input"
-        />
-        <button onClick={createTodos} data-testid="new-todo-add-button">
-          추가
-        </button>
-      </form>
-      {list &&
-        list.map((item) => (
-          <div className="p-3" key={item.id}>
-            <Suspense fallback={<div></div>}>
-              <TodoItem
-                item={item}
-                updateTodos={updateTodos}
-                deleteTodos={deleteTodos}
-              />
-            </Suspense>
-          </div>
-        ))}
-    </div>
-  );
+  if (!localStorage.token) {
+    <div></div>;
+  } else {
+    return (
+      <div className="w-[100%] py-8 flex flex-col justify-center items-center">
+        <div className="text-3xl font-semibold p-3">TODO List</div>
+        <form className="p-5 w-[80vw] md:w-[50vw] flex justify-center">
+          <input
+            placeholder="할 일을 추가해보세요 :)"
+            value={currentTodo || ""}
+            onChange={(event) => setCurrentTodo(event.target.value)}
+            data-testid="new-todo-input"
+            className="bg-gray-200 w-[70%] px-3 py-2 mx-1 rounded-lg"
+          />
+          <button
+            onClick={createTodos}
+            data-testid="new-todo-add-button"
+            className="bg-sky-200 hover:bg-sky-300 px-3 py-2 mx-1 rounded-lg"
+          >
+            추가
+          </button>
+        </form>
+        <div>
+          {list &&
+            list.map((item) => (
+              <div key={item.id} className="">
+                <Suspense fallback={<div></div>}>
+                  <TodoItem
+                    item={item}
+                    updateTodos={updateTodos}
+                    deleteTodos={deleteTodos}
+                  />
+                </Suspense>
+              </div>
+            ))}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default React.memo(Todo);

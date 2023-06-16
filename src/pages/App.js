@@ -1,11 +1,4 @@
-import {
-  Navigate,
-  Route,
-  Routes,
-  redirect,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Home from "./Home";
 import SignIn from "../auth/SignIn";
 import SignUp from "../auth/SignUp";
@@ -41,6 +34,11 @@ function App() {
         } else if (path[0] === "/signin") {
           window.location.replace("/todo");
         }
+        setPath([]);
+      }
+    } else {
+      if (path[0] === "/todo") {
+        window.location.replace("/signin");
         setPath([]);
       }
     }

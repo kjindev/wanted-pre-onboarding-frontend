@@ -1,9 +1,6 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 export default function useSign() {
-  const navigator = useNavigate();
-
   const requestSign = async (event, type, inputEmail, inputPassword) => {
     event.preventDefault();
     try {
@@ -17,9 +14,11 @@ export default function useSign() {
       });
       if (type === "signin" && status === 200) {
         localStorage.setItem("token", data.access_token);
-        navigator("/todo");
+        window.location.replace("/todo");
       } else if (type === "signup" && status === 201) {
-        navigator("/signin");
+        window.location.replace("/signin");
+      } else {
+        alert("error");
       }
     } catch (err) {
       alert(err.response.data.message);
