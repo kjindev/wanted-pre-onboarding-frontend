@@ -110,7 +110,7 @@ function Todo() {
         <div>
           {list &&
             list.map((item) => (
-              <div key={item.id} className="">
+              <div key={item.id}>
                 <Suspense fallback={<div></div>}>
                   <TodoItem
                     item={item}

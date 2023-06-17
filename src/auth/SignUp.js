@@ -56,6 +56,7 @@ export default function SignUp() {
                 }
                 data-testid="signup-button"
                 ref={buttonRef}
+                disabled
                 className="bg-sky-500 w-[100%] rounded-full p-2 text-sm m-2 mt-5"
               >
                 회원가입

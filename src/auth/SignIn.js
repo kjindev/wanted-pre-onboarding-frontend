@@ -40,7 +40,7 @@ export default function SignIn() {
                 onClick={(event) =>
                   requestSign(event, "signin", currentEmail, currentPassword)
                 }
-                data-testid="signup-button"
+                data-testid="signin-button"
                 ref={buttonRef}
                 className="bg-sky-500 w-[100%] rounded-full p-2 text-sm m-2 mt-5"
               >
